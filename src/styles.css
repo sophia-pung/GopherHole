@@ -1,0 +1,130 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * GopherHole design system — UMN maroon + gold, warm cream base.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-spotify: var(--spotify);
+  --color-spotify-foreground: var(--spotify-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-online: var(--online);
+  --color-success: var(--success);
+  --font-sans: "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-hand: "Caveat", cursive;
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.975 0.017 75);      /* cream #FFF6EB */
+  --foreground: oklch(0.23 0.025 20);       /* ink #2B1A1A */
+  --card: oklch(0.994 0.007 85);            /* surface #FFFDF8 */
+  --card-foreground: oklch(0.23 0.025 20);
+  --primary: oklch(0.37 0.14 18);           /* maroon #7A0019 */
+  --primary-foreground: oklch(0.975 0.017 75);
+  --accent: oklch(0.85 0.17 85);            /* gold #FFC107 */
+  --accent-foreground: oklch(0.23 0.025 20);
+  --spotify: oklch(0.72 0.19 150);
+  --spotify-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.9 0.05 25);          /* blush #FFD6D0 */
+  --secondary-foreground: oklch(0.37 0.14 18);
+  --muted: oklch(0.9 0.035 50);
+  --muted-foreground: oklch(0.47 0.05 25);
+  --success: oklch(0.93 0.06 155);          /* mint #C8F2D6 */
+  --destructive: oklch(0.55 0.21 27);
+  --destructive-foreground: oklch(0.975 0.017 75);
+  --border: oklch(0.37 0.14 18 / 0.35);
+  --input: oklch(0.37 0.14 18 / 0.55);
+  --ring: oklch(0.85 0.17 85);
+  --surface: oklch(0.93 0.035 40);
+  --online: oklch(0.72 0.16 150);
+  --shadow-sticker: 3px 3px 0 var(--primary);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility phone-shadow {
+  box-shadow: 0 24px 60px -20px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+.dual-range input[type="range"] { pointer-events: none; -webkit-appearance: none; appearance: none; background: transparent; position: absolute; inset: 0; width: 100%; }
+.dual-range input[type="range"]::-webkit-slider-thumb { pointer-events: auto; -webkit-appearance: none; width: 22px; height: 22px; border-radius: 9999px; background: var(--primary); border: 3px solid var(--accent); cursor: pointer; }
+.dual-range input[type="range"]::-moz-range-thumb { pointer-events: auto; width: 18px; height: 18px; border-radius: 9999px; background: var(--primary); border: 3px solid var(--accent); cursor: pointer; }
+
+@utility sticker {
+  background: var(--card);
+  border: 2px solid var(--primary);
+  border-radius: 24px;
+  box-shadow: var(--shadow-sticker);
+}
+@utility sticker-btn {
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sticker);
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--primary);
+  }
+}
+@utility tape {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 64px;
+    height: 20px;
+    transform: translateX(-50%) rotate(-3deg);
+    background: color-mix(in oklab, var(--accent) 55%, transparent);
+    border-left: 2px dashed color-mix(in oklab, var(--card) 70%, transparent);
+    border-right: 2px dashed color-mix(in oklab, var(--card) 70%, transparent);
+  }
+}
+@utility font-hand {
+  font-family: var(--font-hand);
+}
